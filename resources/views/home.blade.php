@@ -18,6 +18,11 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+
+        }
+
+        tr.cancelled td {
+            text-decoration: line-through;
         }
 
         th,
@@ -66,7 +71,7 @@
             <th>In orario</th>
         </tr>
         @foreach ($todays_trains as $train)
-            <tr>
+            <tr class="{{ $train->cancelled ? 'cancelled' : '' }}">
                 <td>
                     <img src="{{ Vite::asset('resources/img/' . $train->provider . '.png') }}"
                         alt="{{ $train->provider }}">
@@ -74,8 +79,8 @@
 
                 <td>{{ $train->dep_station }}</td>
                 <td>{{ $train->arr_station }}</td>
-                <td>{{ substr($train->dep_time, 0, 5) }}</td>
-                <td>{{ substr($train->arr_time, 0, 5) }}</td>
+                <td>{{ $train->dep_time, 0, 5 }}</td>
+                <td>{{ $train->arr_time, 0, 5 }}</td>
                 <td>{{ $train->dep_date }}</td>
                 <td>{{ $train->train_code }}</td>
                 <td><i class="fa-solid {{ $train->on_time ? 'fa-check' : 'fa-cross' }}"></i>

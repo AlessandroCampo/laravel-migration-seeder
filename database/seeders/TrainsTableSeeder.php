@@ -40,18 +40,18 @@ class TrainsTableSeeder extends Seeder
         ];;
         $providers = ['Italo', 'Trenitalia'];
 
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $depDate = $faker->dateTimeBetween('now', '+1 month')->format('Y-m-d');
             Train::create([
                 'provider' => $faker->randomElement($providers),
                 'dep_station' => $faker->randomElement($stations),
                 'arr_station' => $faker->randomElement($stations),
-                'dep_time' => $faker->time('H:i:s'),
-                'arr_time' => $faker->time('H:i:s'),
+                'dep_time' => $faker->time('H:i'),
+                'arr_time' => $faker->time('H:i'),
                 'dep_date' => $depDate,
                 'train_code' => $faker->unique()->randomNumber(5),
                 'carriage_num' => $faker->numberBetween(1, 10),
-                'on_time' => $faker->boolean,
+                'on_time' => $faker->boolean(75),
                 'cancelled' => $faker->boolean(10),
             ]);
         }
